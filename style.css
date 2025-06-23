@@ -335,3 +335,106 @@ body{
   color: #555;
   width: fit-content;
 }
+
+/* chore details style*/
+.form-section {
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-block {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-block label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input[type="text"],
+textarea {
+  padding: 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  width: 100%;
+  resize: none;
+}
+
+.icon-options {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon-pick {
+  width: 48px;
+  height: 48px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.icon-more {
+  padding: 10px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.preview-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.preview-card img {
+  width: 48px;
+  height: 48px;
+}
+
+.preview-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.preview-sub {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.sticky-footer {
+  position: fixed;
+  bottom: 70px; /* adjust to match height of your bottom nav */
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: #fef6f1;
+  z-index: 100;
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff5eb8;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chore details</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<nav class="bottom-nav">
+  <a href="#" class="nav-item">
+    <img src="../assets/home.svg" alt="Home" />
+    <span>Home</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/chores.svg" alt="Chores" />
+    <span>Chores</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/bills.svg" alt="Bills" />
+    <span>Bills</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/group.svg" alt="Group" />
+    <span>Group</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/profile.svg" alt="Profile" />
+    <span>Profile</span>
+  </a>
+</nav>
+
+<body>
+    <body>
+  <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>Chore details</h1>
+  </header>
+
+  <main class="form-section">
+    <!-- Chore name -->
+    <div class="input-block">
+      <label for="choreName">Chore name</label>
+      <input type="text" id="choreName" placeholder="E.g. Clean bathroom, Take out trash..." />
+    </div>
+
+    <!-- Icon selection -->
+    <div class="input-block">
+      <label>Choose icon for this chore</label>
+      <div class="icon-options">
+        <img src="../assets/bin.svg" alt="Bin" class="icon-pick" />
+        <img src="../assets/toilet.svg" alt="Shower" class="icon-pick" />
+        <img src="../assets/vaccum.svg" alt="Vacuum" class="icon-pick" />
+        <div class="icon-more">More</div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="input-block">
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" placeholder="E.g. Remember to wipe under the toaster"></textarea>
+    </div>
+
+    <!-- Live preview (hidden initially) -->
+    <div class="preview-card" id="previewCard" style="display: none;">
+      <img id="previewIcon" src="" alt="Chosen icon" />
+      <div class="preview-text">
+        <p class="preview-title" id="previewTitle"></p>
+        <p class="preview-sub" id="previewNote"></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky Continue Button -->
+  <div class="sticky-footer">
+    <button class="continue-btn">Continue</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
