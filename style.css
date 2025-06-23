@@ -224,3 +224,114 @@ body{
   width: 24px;
   height: 24px;
 }
+
+
+/*create chore page styles*/
+
+.top-bar {
+  background: #fff0e6;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 2px solid #e3c5aa;
+  gap: 10px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.back-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.top-bar h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.chore-options {
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  background: #ff5eb8;
+  color: white;
+  border-radius: 16px;
+  padding: 16px;
+  gap: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.option-icon {
+  background: white;
+  border-radius: 50%;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.option-text h2 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.option-text p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.suggestion-box {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.suggestion-label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #eee;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.view-more {
+  font-size: 0.85rem;
+  text-decoration: underline;
+  color: #555;
+  width: fit-content;
+}
