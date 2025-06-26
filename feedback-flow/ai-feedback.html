@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Feedback Assistance</title>
+  <link rel="stylesheet" href="../feedback-style.css" />
+</head>
+<body>
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>AI feedback assistance</h1>
+  </header>
+
+  <!-- Main content -->
+  <main class="ai-feedback-screen">
+    <!-- Rewrite Summary -->
+    <section class="card rewrite-summary">
+      <h3>✨ Here’s your reworded feedback</h3>
+      <p>AI made it more constructive and positive</p>
+    </section>
+
+    <!-- Original Message -->
+    <section class="card original-feedback">
+      <h4>👤 Your original message</h4>
+      <div class="feedback-box">
+        <p id="originalMessage">[User's original feedback will appear here]</p>
+      </div>
+    </section>
+
+    <!-- AI Rewrite -->
+    <section class="card rewritten-feedback">
+      <h4>🤖 AI rewritten version</h4>
+      <p class="description">We used AI to rewrite your message in a more constructive and helpful tone.</p>
+      <div class="feedback-box ai-box">
+        <p id="aiMessage">[AI's improved feedback will appear here]</p>
+      </div>
+
+      <!-- Tone Tags -->
+      <div class="tone-tags">
+        <span class="tag">💡 Constructive suggestions</span>
+        <span class="tag">😊 Friendly tone</span>
+        <span class="tag">✅ More encouraging</span>
+      </div>
+
+      <!-- Actions -->
+      <button class="primary-btn" id="sendFeedbackBtn">Send feedback</button>
+      <div class="action-row">
+        <button class="secondary-btn">🔁 Try again</button>
+        <button class="secondary-btn">✏️ Edit original</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item">
+      <img src="../assets/home.svg" alt="Home" />
+      <span>Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/chores.svg" alt="Chores" />
+      <span>Chores</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/bills.svg" alt="Bills" />
+      <span>Bills</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/group.svg" alt="Group" />
+      <span>Group</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/profile.svg" alt="Profile" />
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script>
+  document.getElementById("sendFeedbackBtn").addEventListener("click", function () {
+    const aiMessage = document.getElementById("aiMessage").textContent;
+    localStorage.setItem("finalFeedback", aiMessage);
+    window.location.href = "feedback-sent.html"; // make sure this file exists
+  });
+
+  // Load previous data into page
+  window.addEventListener("DOMContentLoaded", () => {
+    const original = localStorage.getItem("originalMessage") || "[No original message]";
+    const rewritten = localStorage.getItem("aiFeedback") || "[No AI feedback available]";
+    
+    document.getElementById("originalMessage").textContent = original;
+    document.getElementById("aiMessage").textContent = rewritten;
+  });
+</script>
+
+</body>
+</html>
