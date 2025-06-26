@@ -7,30 +7,64 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<nav class="bottom-nav">
-  <a href="#" class="nav-item">
-    <img src="../assets/home.svg" alt="Home" />
-    <span>Home</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/chores.svg" alt="Chores" />
-    <span>Chores</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/bills.svg" alt="Bills" />
-    <span>Bills</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/group.svg" alt="Group" />
-    <span>Group</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/profile.svg" alt="Profile" />
-    <span>Profile</span>
-  </a>
-</nav>
-
 <body>
-    
+  <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>Schedule</h1>
+  </header>
+
+  <main class="feedback-screen">
+    <section class="card toggle-card">
+      <div class="card-header">
+        <h2>Allow feedback</h2>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <p class="card-subtext">Flatmates can provide feedback when chore is complete</p>
+    </section>
+
+    <section class="card tone-card">
+      <h2>Feedback tone</h2>
+      <div class="tone-options">
+        <button class="tone-btn active">Friendly</button>
+        <button class="tone-btn">Constructive</button>
+        <button class="tone-btn">Custom</button>
+      </div>
+    </section>
+
+    <section class="card ai-rewrite-card">
+      <div class="card-header">
+        <h2>Enable AI rewrites</h2>
+        <label class="switch">
+          <input type="checkbox" id="aiToggle" checked />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <p class="card-subtext">AI will rewrite feedback to match your preferred tone</p>
+
+      <div class="rewrite-example">
+        <p class="original"><strong>Original:</strong><br><span id="originalNote">Loading...</span></p>
+        <p class="rewrite"><strong>AI rewrite (<span id="toneLabel">friendly</span>):</strong><br><span id="rewriteText">Loading...</span></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-footer">
+    <button class="continue-btn" onclick="window.location.href='review.html'">Continue</button>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item"><img src="../assets/home.svg" alt="Home" /><span>Home</span></a>
+    <a href="#" class="nav-item"><img src="../assets/chores.svg" alt="Chores" /><span>Chores</span></a>
+    <a href="#" class="nav-item"><img src="../assets/bills.svg" alt="Bills" /><span>Bills</span></a>
+    <a href="#" class="nav-item"><img src="../assets/group.svg" alt="Group" /><span>Group</span></a>
+    <a href="#" class="nav-item"><img src="../assets/profile.svg" alt="Profile" /><span>Profile</span></a>
+  </nav>
+
+  <script src="../script.js"></script>
 </body>
 </html>
