@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedback-screen</title>
+    <link rel="stylesheet" href="../feedback-style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>Edit feedback</h1>
+  </header>
+
+  <main class="feedback-screen">
+    <h2 class="section-title">Customize your feedback</h2>
+    <p class="section-subtitle">Make any changes you’d like before sending to Alex</p>
+
+    <section class="card feedback-preview-card">
+      <img src="../assets/dishes.svg" alt="Dishes icon" class="preview-icon" />
+      <div class="feedback-meta">
+        <h3>Dishes</h3>
+        <p class="feedback-assignee">• Completed by Alex</p>
+      </div>
+    </section>
+
+    <section class="card feedback-input-card">
+      <label for="feedbackMessage"><strong>Your Message</strong></label>
+      <textarea
+        id="feedbackMessage"
+        placeholder="E.g. Maybe double check the grease on the pan next time"
+        rows="5"
+      ></textarea>
+      <button class="primary-btn" id="sendFeedbackBtn">Send feedback</button>
+
+    <div class="feedback-actions">
+      <button class="secondary-btn">Save draft</button>
+      <button class="secondary-btn cancel">Cancel</button>
+    </div>
+
+    </section>
+
+
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item">
+      <img src="../assets/home.svg" alt="Home" />
+      <span>Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/chores.svg" alt="Chores" />
+      <span>Chores</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/bills.svg" alt="Bills" />
+      <span>Bills</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/group.svg" alt="Group" />
+      <span>Group</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/profile.svg" alt="Profile" />
+      <span>Profile</span>
+    </a>
+  </nav>
+<script>
+  document.getElementById("sendFeedbackBtn").addEventListener("click", function () {
+    const userMessage = document.querySelector("textarea").value;
+    localStorage.setItem("originalMessage", userMessage);
+    window.location.href = "ai-feedback.html"; // change to your AI-assisted page file name
+  });
+</script>
+
+
+</body>
+</html>
