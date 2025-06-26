@@ -30,6 +30,97 @@
   </a>
 </nav>
     <body>
-    
+    <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>Assigning chore</h1>
+  </header>
+
+  <main class="assign-section">
+    <!-- Top preview card (dynamic from previous screen) -->
+    <div class="preview-card" id="chorePreview">
+      <img id="choreIcon" src="" alt="Chore icon" />
+      <div class="preview-text">
+        <p class="preview-title" id="choreTitle"></p>
+        <p class="preview-sub" id="choreNotes"></p>
+      </div>
+    </div>
+
+    <!-- Assignment list -->
+    <div class="input-block">
+      <label>Choose whose responsible for this chore</label>
+      <div class="assignee-list">
+        <div class="assignee">
+          <img src="../assets/alex-avatar.svg" alt="Alex" />
+          <div class="assignee-text">
+            <p>Alex</p>
+            <span class="recommend-badge">Recommended</span>
+          </div>
+          <input type="radio" name="assignee" value="Alex" />
+        </div>
+        <div class="assignee">
+          <img src="../assets/jane-avatar.svg" alt="Jane" />
+          <div class="assignee-text">
+            <p>Jane</p>
+            <small>Last did: 5 days ago</small>
+          </div>
+          <input type="radio" name="assignee" value="Jane" />
+        </div>
+        <div class="assignee">
+          <img src="../assets/user-avatar.svg" alt="You" />
+          <div class="assignee-text">
+            <p>You</p>
+            <small>Last did: 1 week ago</small>
+          </div>
+          <input type="radio" name="assignee" value="You" />
+        </div>
+        <div class="assignee">
+          <img src="../assets/maria-avatar.svg" alt="Maria" />
+          <div class="assignee-text">
+            <p>Maria</p>
+            <small>Last did: 2 weeks ago</small>
+          </div>
+          <input type="radio" name="assignee" value="Maria" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotation toggle -->
+    <div class="input-block">
+      <label for="rotationSwitch">Enable rotation for this chore</label>
+      <p class="subtext">Automatically rotate this chore among flatmates</p>
+      <label class="switch">
+        <input type="checkbox" id="rotationSwitch" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </main>
+
+        <!-- Sticky Continue Button -->
+  <div class="sticky-footer">
+<button id="assignContinueBtn" class="continue-btn">Continue</button>
+  </div>
+  
+  <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const data = JSON.parse(localStorage.getItem("currentChore"));
+
+    if (data) {
+      document.getElementById("choreTitle").textContent = data.name;
+      document.getElementById("choreNotes").textContent = data.note;
+      document.getElementById("choreIcon").src = data.icon;
+    }
+  });
+</script>
+
+<script>
+  // Navigate to schedule page on continue click
+  document.getElementById("assignContinueBtn").addEventListener("click", () => {
+    window.location.href = "schedule.html"; // Update with your actual file path if needed
+  });
+</script>
+
+
 </body>
 </html>

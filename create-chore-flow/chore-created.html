@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chore Created</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>Chore created</h1>
+  </header>
+
+  <main class="confirmation-screen">
+    <section class="card chore-confirmation">
+      <div class="chore-summary">
+        <img id="choreIcon" src="../assets/default-icon.svg" alt="Chore icon" />
+        <h2 id="choreTitle">Chore name</h2>
+      </div>
+      <p class="confirmation-msg">
+        <span>Alex will receive a notification about this new chore with all the details you provided.</span>
+      </p>
+      <button class="create-btn">Create another chore</button>
+      <button class="secondary-btn">View all chores</button>
+    </section>
+
+    <section class="card recently-added">
+      <h3>Recently added</h3>
+      <div class="recent-item">
+        <img src="../assets/bin.svg" alt="Take out bins" />
+        <div>
+          <strong>Take out bins</strong>
+          <p>Due Friday – Alex</p>
+        </div>
+      </div>
+      <div class="recent-item">
+        <img src="../assets/dishes.svg" alt="Wash dishes" />
+        <div>
+          <strong>Wash dishes</strong>
+          <p>Due today – Jane</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item"><img src="../assets/home.svg" /><span>Home</span></a>
+    <a href="#" class="nav-item"><img src="../assets/chores.svg" /><span>Chores</span></a>
+    <a href="#" class="nav-item"><img src="../assets/bills.svg" /><span>Bills</span></a>
+    <a href="#" class="nav-item"><img src="../assets/group.svg" /><span>Group</span></a>
+    <a href="#" class="nav-item"><img src="../assets/profile.svg" /><span>Profile</span></a>
+  </nav>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const data = JSON.parse(localStorage.getItem("currentChore"));
+
+      const iconEl = document.getElementById("choreIcon");
+      const nameEl = document.getElementById("choreTitle");
+
+      if (data) {
+        iconEl.src = data.icon || "../assets/default-icon.svg";
+        nameEl.textContent = data.name || "Unnamed chore";
+      }
+    });
+  </script>
+</body>
+</html>

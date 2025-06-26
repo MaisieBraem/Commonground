@@ -31,7 +31,50 @@
 </nav>
 
 <body>
-    
-    
+
+    <main class="feedback-screen">
+  <section class="card toggle-card">
+    <div class="card-header">
+      <h2>Allow feedback</h2>
+      <label class="switch">
+        <input type="checkbox" checked />
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <p class="card-subtext">Flatmates can provide feedback when chore is complete</p>
+  </section>
+
+  
+  <section class="card tone-card">
+  <h2>Feedback tone</h2>
+  <div class="tone-options">
+    <button class="tone-btn active">Friendly</button>
+    <button class="tone-btn">Constructive</button>
+    <button class="tone-btn">Custom</button>
+  </div>
+</section>
+
+  <section class="card ai-rewrite-card">
+    <div class="card-header">
+      <h2>Enable AI rewrites</h2>
+      <label class="switch">
+        <input type="checkbox" checked />
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <p class="card-subtext">AI will rewrite feedback to match your preferred tone</p>
+
+    <div class="rewrite-example">
+      <p class="original"><strong>Original:</strong><br>"Make sure you clean behind the toilet"</p>
+      <p class="rewrite"><strong>AI rewrite (friendly):</strong><br>"Don't forget to give behind the toilet a quick clean too 😊."</p>
+    </div>
+  </section>
+
+  <div class="btn-container">
+    <button class="continue-btn">Continue</button>
+  </div>
+</main>
+
+      <script src="../script.js"></script>
 </body>
 </html>

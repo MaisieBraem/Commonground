@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review and Confirm</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <header class="top-bar">
+    <button class="back-btn">
+      <img src="../assets/back.svg" alt="Back" />
+    </button>
+    <h1>Review and confirm</h1>
+  </header>
+
+  <main class="review-screen">
+    <section class="card review-summary">
+      <div class="chore-preview">
+        <img id="choreIcon" src="" alt="Chore icon" />
+        <h2 id="choreName">Chore name</h2>
+      </div>
+      <ul class="details-list">
+        <li><span>Assigned to:</span> <strong id="assignedTo">Alex</strong></li>
+        <li><span>Due date:</span> <span id="dueDate">Monday, June 16</span></li>
+        <li><span>Frequency:</span> <span id="frequency">Every Monday</span></li>
+        <li><span>Reminder:</span> <span id="reminder">1 day before</span></li>
+        <li><span>Notes:</span> <span id="noteText">Loading...</span></li>
+        <li><span>Feedback:</span> <span id="feedbackTone">Friendly</span></li>
+      </ul>
+    </section>
+
+    <section class="card action-buttons">
+      <button class="create-btn" onclick="window.location.href='chore-created.html'">Create chore</button>
+      <button class="secondary-btn">
+        <img src="../assets/seve-icon.svg" alt="Save icon" />
+        Save template
+      </button>
+      <button class="secondary-btn">
+        <img src="../assets/edit-icon.svg" alt="Edit icon" />
+        Edit details
+      </button>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item">
+      <img src="../assets/home.svg" alt="Home" />
+      <span>Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/chores.svg" alt="Chores" />
+      <span>Chores</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/bills.svg" alt="Bills" />
+      <span>Bills</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/group.svg" alt="Group" />
+      <span>Group</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/profile.svg" alt="Profile" />
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("currentChore")) || {};
+    const rewritten = localStorage.getItem("rewrittenNote") || data.note || "No note available.";
+
+    document.getElementById("choreIcon").src = data.icon || "../assets/default-icon.svg";
+    document.getElementById("choreIcon").alt = data.name ? `${data.name} icon` : "Chore icon";
+    document.getElementById("choreName").textContent = data.name || "Chore name";
+    document.getElementById("assignedTo").textContent = data.assignedTo || "Alex";
+    document.getElementById("dueDate").textContent = data.dueDate || "Monday, June 16";
+    document.getElementById("frequency").textContent = data.frequency || "Every Monday";
+    document.getElementById("reminder").textContent = data.reminder || "1 day before";
+    document.getElementById("noteText").textContent = rewritten;
+    document.getElementById("feedbackTone").textContent = data.tone || "Friendly";
+  </script>
+    <script src="../script.js"></script>
+</body>
+</html>
