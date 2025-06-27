@@ -33,7 +33,7 @@
         <span>Alex will receive a notification about this new chore with all the details you provided.</span>
       </p>
       <button class="create-btn">Create another chore</button>
-      <button class="secondary-btn">View all chores</button>
+      <button class="chores-btn">View all chores</button>
     </section>
 
     <section class="card recently-added">
@@ -76,5 +76,16 @@
       }
     });
   </script>
+
+<script>
+   document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "review.html";
+      }
+    });
+</script>  
+
 </body>
 </html>

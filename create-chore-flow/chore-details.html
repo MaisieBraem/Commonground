@@ -47,14 +47,24 @@
   </div>
 
   <nav class="bottom-nav">
-    <a href="#" class="nav-item"><img src="../assets/home.svg" /><span>Home</span></a>
-    <a href="#" class="nav-item"><img src="../assets/chores.svg" /><span>Chores</span></a>
+    <a href="../index.html" class="nav-item"><img src="../assets/home.svg" /><span>Home</span></a>
+    <a href="../chores.html" class="nav-item"><img src="../assets/chores.svg" /><span>Chores</span></a>
     <a href="#" class="nav-item"><img src="../assets/bills.svg" /><span>Bills</span></a>
     <a href="#" class="nav-item"><img src="../assets/group.svg" /><span>Group</span></a>
     <a href="#" class="nav-item"><img src="../assets/profile.svg" /><span>Profile</span></a>
   </nav>
 
   <script src="../script.js"></script>
+
+  <script>
+      document.querySelector(".back-btn")?.addEventListener("click", () => {
+    if (document.referrer && document.referrer !== window.location.href) {
+      window.history.back();
+    } else {
+      window.location.href = "create-chore.html";
+    }
+  });
+  </script>
 </body>
 </body>
 </html>

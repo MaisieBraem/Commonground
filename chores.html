@@ -6,28 +6,6 @@
     <title>Chores page</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<nav class="bottom-nav">
-  <a href="#" class="nav-item">
-    <img src="assets/home.svg" alt="Home" />
-    <span>Home</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="assets/chores.svg" alt="Chores" />
-    <span>Chores</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="assets/bills.svg" alt="Bills" />
-    <span>Bills</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="assets/group.svg" alt="Group" />
-    <span>Group</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="assets/profile.svg" alt="Profile" />
-    <span>Profile</span>
-  </a>
-</nav>
 
 <body>
         <header class="top-bar">
@@ -35,8 +13,9 @@
             <h1>Chores</h1>
             <span class="notif"> <img src="assets/notif-icon.svg" alt="notification icon"></span>
         </header>
-       <section class="progress-section">
-
+       
+<main class="main-content">
+        <section class="progress-section">
   <h2>This week’s progress</h2>
   <div class="progress-cards">
     <div class="progress-card">
@@ -146,13 +125,24 @@
     These are the tasks that have been completed this week. Feel free to give feedback!
   </p>
 
-  <div class="chore-card">
-    <img src="assets/toilet.svg" alt="Clean shower" />
-    <div class="chore-text">
-      <p class="chore-title">Clean shower</p>
-      <p class="chore-subtext">Completed Yesterday – Jane</p>
-    </div>
+  <div class="chore-card with-button">
+  <img src="assets/toilet.svg" alt="Clean shower" />
+  <div class="chore-text">
+    <p class="chore-title">Clean shower</p>
+    <p class="chore-subtext">Completed Yesterday – Jane</p>
   </div>
+  <button class="feedback-btn">Give<br>feedback</button>
+</div>
+
+<div class="chore-card with-button">
+  <img src="assets/dishes.svg" alt="Dishes" />
+  <div class="chore-text">
+    <p class="chore-title">Dishes</p>
+    <p class="chore-subtext">Completed Monday – Alex</p>
+  </div>
+  <button class="feedback-btn" onclick="window.location.href='feedback-flow/chore-details-feedback.html'">Give<br>feedback</button>
+
+</div>
 
   <div class="chore-card">
     <img src="assets/mop.svg" alt="Mop kitchen" />
@@ -162,16 +152,39 @@
     </div>
   </div>
 
-  <div class="chore-card">
-    <img src="assets/dishes.svg" alt="Dishes" />
-    <div class="chore-text">
-      <p class="chore-title">Dishes</p>
-      <p class="chore-subtext">Completed Monday – Alex</p>
-    </div>
+
   </div>
 </section>
+</main>
+<button class="add-chore-btn" onclick="window.location.href='create-chore-flow/create-chore.html'">
+  <img src="assets/plus-icon.svg" alt="Add chore" />
+</button>
 
-
+  </svg>
+</button>
+  <nav class="bottom-nav">
+  <a href="#" class="nav-item">
+    <img src="assets/home.svg" alt="Home" />
+    <span>Home</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="assets/chores.svg" alt="Chores" />
+    <span>Chores</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="assets/bills.svg" alt="Bills" />
+    <span>Bills</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="assets/group.svg" alt="Group" />
+    <span>Group</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="assets/profile.svg" alt="Profile" />
+    <span>Profile</span>
+  </a>
+</nav>
+  <script src="../script.js"></script>
 </body>
 
 </html>

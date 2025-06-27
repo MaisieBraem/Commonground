@@ -15,44 +15,65 @@
     <h1>Schedule</h1>
   </header>
 
-  <main class="feedback-screen">
+  <section class="card">
+      <h2>Due date</h2>
+      <div class="dropdown">
+        <input type="date" id="dueDate" class="dropdown-select" />
+        
+      </div>
+    </section>
+
+    <!-- Frequency -->
+    <section class="card">
+      <h2>Frequency</h2>
+      <div class="option-buttons" id="frequencyOptions">
+        <button class="active" data-value="one-time">One-time</button>
+        <button data-value="weekly">Weekly</button>
+        <button data-value="custom">Custom</button>
+      </div>
+    </section>
+
+    <!-- Reminder -->
+    <section class="card">
+      <h2>Set reminder</h2>
+      <div class="dropdown">
+        <select id="reminderSelect" class="dropdown-select">
+          <option>Same day</option>
+          <option>1 day before</option>
+          <option>2 days before</option>
+          <option>1 week before</option>
+        </select>
+        <img src="../assets/drop-down-icon.svg" alt="Dropdown" class="dropdown-icon" />
+      </div>
+    </section>
+
+    <!-- Smart Schedule -->
     <section class="card toggle-card">
       <div class="card-header">
-        <h2>Allow feedback</h2>
+        <h2>Use smart schedule</h2>
         <label class="switch">
-          <input type="checkbox" checked />
+          <input type="checkbox" />
           <span class="slider round"></span>
         </label>
       </div>
-      <p class="card-subtext">Flatmates can provide feedback when chore is complete</p>
+      <p class="card-subtext">This is usually done Mondays — want to keep that?</p>
     </section>
 
-    <section class="card tone-card">
-      <h2>Feedback tone</h2>
-      <div class="tone-options">
-        <button class="tone-btn active">Friendly</button>
-        <button class="tone-btn">Constructive</button>
-        <button class="tone-btn">Custom</button>
+    <!-- End Repeat (visible for weekly/custom) -->
+    <section class="card" id="endRepeatCard">
+      <h2>End repeat</h2>
+      <div class="option-buttons" id="endRepeatOptions">
+        <button class="active" data-value="never">Never</button>
+        <button data-value="on-date">On date</button>
+      </div>
+      <div id="endRepeatDate" class="hidden">
+        <input type="date" class="dropdown-select" />
       </div>
     </section>
 
-    <section class="card ai-rewrite-card">
-      <div class="card-header">
-        <h2>Enable AI rewrites</h2>
-        <label class="switch">
-          <input type="checkbox" id="aiToggle" checked />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <p class="card-subtext">AI will rewrite feedback to match your preferred tone</p>
-
-      <div class="rewrite-example">
-        <p class="original"><strong>Original:</strong><br><span id="originalNote">Loading...</span></p>
-        <p class="rewrite"><strong>AI rewrite (<span id="toneLabel">friendly</span>):</strong><br><span id="rewriteText">Loading...</span></p>
-      </div>
-    </section>
   </main>
 
+  <!-- Footer -->
   <div class="sticky-footer">
     <button class="continue-btn" onclick="window.location.href='review.html'">Continue</button>
   </div>
@@ -65,6 +86,66 @@
     <a href="#" class="nav-item"><img src="../assets/profile.svg" alt="Profile" /><span>Profile</span></a>
   </nav>
 
-  <script src="../script.js"></script>
+  <script>
+    // Frequency options toggle
+    const freqButtons = document.querySelectorAll("#frequencyOptions button");
+    const endRepeatCard = document.getElementById("endRepeatCard");
+
+    freqButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        freqButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const value = button.getAttribute("data-value");
+        endRepeatCard.style.display = (value === "weekly" || value === "custom") ? "block" : "none";
+      });
+    });
+
+    // End repeat toggle
+    const endButtons = document.querySelectorAll("#endRepeatOptions button");
+    const endDateInput = document.getElementById("endRepeatDate");
+
+    endButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        endButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const value = button.getAttribute("data-value");
+        endDateInput.classList.toggle("hidden", value !== "on-date");
+      });
+    });
+
+    // Back button fallback
+    document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "assigning-chore.html";
+      }
+    });
+  </script>
+  <script>
+  const smartToggle = document.querySelector('.toggle-card input[type="checkbox"]');
+  const dueDateInput = document.getElementById('dueDate');
+
+  function getNextMonday() {
+    const today = new Date();
+    const day = today.getDay();
+    const diff = (8 - day) % 7 || 7; // if today is Monday, get next Monday
+    const nextMonday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + diff);
+    return nextMonday.toISOString().split('T')[0]; // format as yyyy-mm-dd
+  }
+
+  smartToggle?.addEventListener('change', () => {
+    if (smartToggle.checked) {
+      const monday = getNextMonday();
+      dueDateInput.value = monday;
+      dueDateInput.disabled = true;
+    } else {
+      dueDateInput.disabled = false;
+      dueDateInput.value = "";
+    }
+  });
+</script>
 </body>
 </html>

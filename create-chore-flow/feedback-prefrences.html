@@ -7,30 +7,13 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<nav class="bottom-nav">
-  <a href="#" class="nav-item">
-    <img src="../assets/home.svg" alt="Home" />
-    <span>Home</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/chores.svg" alt="Chores" />
-    <span>Chores</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/bills.svg" alt="Bills" />
-    <span>Bills</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/group.svg" alt="Group" />
-    <span>Group</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/profile.svg" alt="Profile" />
-    <span>Profile</span>
-  </a>
-</nav>
 
 <body>
+  <header class="top-bar">
+    <button class="back-btn"><img src="../assets/back.svg" alt="Back" /></button>
+    <h1>Schedule</h1>
+  </header>
+
 
     <main class="feedback-screen">
   <section class="card toggle-card">
@@ -75,6 +58,40 @@
   </div>
 </main>
 
+<nav class="bottom-nav">
+  <a href="#" class="nav-item">
+    <img src="../assets/home.svg" alt="Home" />
+    <span>Home</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/chores.svg" alt="Chores" />
+    <span>Chores</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/bills.svg" alt="Bills" />
+    <span>Bills</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/group.svg" alt="Group" />
+    <span>Group</span>
+  </a>
+  <a href="#" class="nav-item">
+    <img src="../assets/profile.svg" alt="Profile" />
+    <span>Profile</span>
+  </a>
+</nav>
+
+
       <script src="../script.js"></script>
+        
+        <script>
+      document.querySelector(".back-btn")?.addEventListener("click", () => {
+    if (document.referrer && document.referrer !== window.location.href) {
+      window.history.back();
+    } else {
+      window.location.href = "../assigning-chore.html";
+    }
+  });
+  </script>
 </body>
 </html>

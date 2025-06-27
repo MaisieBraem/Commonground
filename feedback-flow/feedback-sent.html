@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feedback sent</title>
+  <title>Feedback Sent</title>
   <link rel="stylesheet" href="../feedback-style.css" />
 </head>
 <body>
 
+  <!-- Top Bar -->
   <header class="top-bar">
     <button class="back-btn">
       <img src="../assets/back.svg" alt="Back" />
@@ -15,9 +16,10 @@
     <h1>Feedback sent</h1>
   </header>
 
+  <!-- Main Confirmation Section -->
   <main>
     <section class="feedback-sent-card">
-      <img src="../assets/check-circle.svg" alt="Check" class="sent-check" />
+      <img src="../assets/confirm-tick.svg" alt="Check" class="sent-check" />
       <h2>Feedback sent!</h2>
       <p class="confirmation-text">
         Your feedback was successfully sent to <strong>Alex</strong>. They’ll receive your helpful message!
@@ -25,23 +27,57 @@
 
       <div class="feedback-message-box">
         <p class="feedback-label">Your feedback message</p>
-        <p id="finalFeedbackText">
-          Thanks for getting the dishes done! Just a quick note: the scrubber was left on the bench, a few dishes still had some grease, and the counter had some water and crumbs. A quick final check next time will help keep everything looking great 😊
-        </p>
+        <p id="finalFeedbackText"></p>
       </div>
 
-      <button class="primary-btn">Give more feedback</button>
-      <button class="secondary-btn back">Back to chores</button>
+      <div class="button-row">
+        <button class="primary-btn" id="doneBtn">
+          <img src="../assets/message.svg" alt="more feedback icon" />
+          Give more feedback
+        </button>
+        
+        <button class="secondary-btn back" id="choresBtn">
+          <img src="../assets/chores.svg" alt="Chores icon" />
+          Back to chores
+        </button>
+      </div>
     </section>
   </main>
 
+  <!-- Bottom Navigation -->
   <nav class="bottom-nav">
-    <a href="#" class="nav-item"><img src="../assets/home.svg" alt="Home" /><span>Home</span></a>
-    <a href="#" class="nav-item"><img src="../assets/chores.svg" alt="Chores" /><span>Chores</span></a>
-    <a href="#" class="nav-item"><img src="../assets/bills.svg" alt="Bills" /><span>Bills</span></a>
-    <a href="#" class="nav-item"><img src="../assets/group.svg" alt="Group" /><span>Group</span></a>
-    <a href="#" class="nav-item"><img src="../assets/profile.svg" alt="Profile" /><span>Profile</span></a>
+    <a href="../home.html" class="nav-item"><img src="../assets/home.svg" alt="Home" /><span>Home</span></a>
+    <a href="../chores.html" class="nav-item"><img src="../assets/chores.svg" alt="Chores" /><span>Chores</span></a>
+    <a href="../bills.html" class="nav-item"><img src="../assets/bills.svg" alt="Bills" /><span>Bills</span></a>
+    <a href="../group.html" class="nav-item"><img src="../assets/group.svg" alt="Group" /><span>Group</span></a>
+    <a href="../profile.html" class="nav-item"><img src="../assets/profile.svg" alt="Profile" /><span>Profile</span></a>
   </nav>
+
+  <!-- Script for Dynamic Behavior -->
+  <script>
+    // Load final message
+    const message = localStorage.getItem("finalFeedback") || "[No message found]";
+    document.getElementById("finalFeedbackText").textContent = message;
+
+    // Go to homepage
+    document.getElementById("doneBtn")?.addEventListener("click", () => {
+      window.location.href = "../home.html";
+    });
+
+    // Go back to chores
+    document.getElementById("choresBtn")?.addEventListener("click", () => {
+      window.location.href = "../chores.html";
+    });
+
+    // Back button in top bar
+    document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "ai-feedback.html"; // Fallback to AI feedback page
+      }
+    });
+  </script>
 
 </body>
 </html>

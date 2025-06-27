@@ -1,14 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="top-bar">
+    <span class="profile"><img src="assets/user-avatar.svg" alt="Profile" /></span>
+    <h1>Hey,<br><span class="username">Sam</span></h1>
+    <span class="notif"><img src="assets/notif-icon.svg" alt="Notifications" /></span>
+  </header>
 
+  <main class="main-container">
 
-    
+    <!-- Hero Welcome -->
+    <section class="task-section">
+      <img src="assets/heroimage.svg" alt="Mascots" class="hero-img" />
+      <h2>Make shared living smoother</h2>
+      <p>Track chores, bills, and shared tasks. No more flat dramas.</p>
+      <button class="feedback-btn">View this week's tasks</button>
+    </section>
+
+    <!-- Weekly Progress -->
+    <section class="progress-section">
+      <h2>This week’s progress</h2>
+      <div class="progress-cards">
+        <div class="progress-card">
+          <h3>Completed</h3>
+          <p class="number">5</p>
+          <p class="subtext">Tasks done</p>
+        </div>
+        <div class="progress-card">
+          <h3>Overdue</h3>
+          <p class="number">1</p>
+          <p class="subtext">Pending</p>
+        </div>
+        <div class="progress-card">
+          <h3>Total</h3>
+          <p class="number">7</p>
+          <p class="subtext">This week</p>
+        </div>
+      </div>
+      <p class="chores-description motivation-msg">🎉 You’re on a roll!<br><small>3 chores completed in a row this week</small></p>
+    </section>
+
+    <!-- Flat Overview -->
+    <section class="task-section">
+      <div class="chores-header">
+        <h2>Your flat</h2>
+      </div>
+      <p class="chores-description"><strong>4 flatmates</strong><br>12 tasks this week</p>
+      <p class="chores-description"><strong>$240.50 bills due</strong><br><small>Power due in 3 days</small></p>
+      <button class="feedback-btn">Check bills</button>
+    </section>
+
+    <!-- Your Chores -->
+    <section class="task-section">
+      <div class="chores-header">
+        <h2>Your chores</h2>
+        <a href="#">View all</a>
+      </div>
+      <div class="chore-card">
+        <img src="assets/bin.svg" alt="Bin" />
+        <div class="chore-text">
+          <p class="chore-title">Empty kitchen bin</p>
+          <p class="chore-subtext">Due tomorrow – You</p>
+        </div>
+      </div>
+      <p class="chores-description note success">⭐ 2 tasks pending – you’re doing great!</p>
+    </section>
+
+    <!-- Flatmates' Chores -->
+    <section class="task-section">
+      <div class="chores-header">
+        <h2>Flatmates' chores</h2>
+        <a href="#">View all</a>
+      </div>
+      <div class="chore-card">
+        <img src="assets/laundry.svg" alt="Laundry" />
+        <div class="chore-text">
+          <p class="chore-title">Take in laundry</p>
+          <p class="chore-subtext">Due tomorrow – Jane</p>
+        </div>
+      </div>
+      <div class="chore-card">
+        <img src="assets/mop.svg" alt="Mop" />
+        <div class="chore-text">
+          <p class="chore-title">Mop bathroom</p>
+          <p class="chore-subtext">Due Friday – Maria</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Messages -->
+    <section class="task-section">
+      <div class="chores-header">
+        <h2>Flat messages</h2>
+        <span class="tag">2 new</span>
+      </div>
+      <div class="chore-card">
+        <img src="assets/alex-avatar.svg" alt="Alex" />
+        <div class="chore-text">
+          <p class="chore-title">Alex</p>
+          <p class="chore-subtext">Who ate my yogurt?</p>
+        </div>
+      </div>
+      <div class="chore-card">
+        <img src="assets/jane-avatar.svg" alt="Jane" />
+        <div class="chore-text">
+          <p class="chore-title">Jane</p>
+          <p class="chore-subtext">Bought toilet paper!</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item"><img src="assets/home.svg" /><span>Home</span></a>
+    <a href="chores.html" class="nav-item"><img src="assets/chores.svg" /><span>Chores</span></a>
+    <a href="#" class="nav-item"><img src="assets/bills.svg" /><span>Bills</span></a>
+    <a href="#" class="nav-item"><img src="assets/group.svg" /><span>Group</span></a>
+    <a href="#" class="nav-item"><img src="assets/profile.svg" /><span>Profile</span></a>
+  </nav>
 </body>
 </html>

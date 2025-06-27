@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>feedback-screen</title>
-    <link rel="stylesheet" href="../feedback-style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Feedback</title>
+  <link rel="stylesheet" href="../feedback-style.css" />
 </head>
 <body>
   <header class="top-bar">
@@ -19,12 +19,14 @@
     <p class="section-subtitle">Make any changes you’d like before sending to Alex</p>
 
     <section class="card feedback-preview-card">
-      <img src="../assets/dishes.svg" alt="Dishes icon" class="preview-icon" />
-      <div class="feedback-meta">
-        <h3>Dishes</h3>
-        <p class="feedback-assignee">• Completed by Alex</p>
-      </div>
-    </section>
+  <div class="feedback-preview-content">
+    <img src="../assets/dishes.svg" alt="Dishes icon" class="preview-icon" />
+    <div class="feedback-meta">
+      <h3>Dishes</h3>
+      <p class="feedback-assignee">• Completed by Alex</p>
+    </div>
+  </div>
+</section>
 
     <section class="card feedback-input-card">
       <label for="feedbackMessage"><strong>Your Message</strong></label>
@@ -33,48 +35,73 @@
         placeholder="E.g. Maybe double check the grease on the pan next time"
         rows="5"
       ></textarea>
-      <button class="primary-btn" id="sendFeedbackBtn">Send feedback</button>
 
-    <div class="feedback-actions">
-      <button class="secondary-btn">Save draft</button>
-      <button class="secondary-btn cancel">Cancel</button>
-    </div>
+      <button class="primary-btn" id="sendFeedbackBtn">
+        <img src="../assets/send.svg" alt="Send icon" />
+        Send feedback
+      </button>
 
+      <div class="button-row">
+        <button class="secondary-btn" id="saveDraftBtn">
+          <img src="../assets/seve-icon.svg" alt="Save icon" />
+          Save draft
+        </button>
+        <button class="secondary-btn cancel" id="cancelBtn">
+          <img src="../assets/cancel.svg" alt="Cancel icon" />
+          Cancel
+        </button>
+      </div>
     </section>
-
-
   </main>
 
   <nav class="bottom-nav">
-    <a href="#" class="nav-item">
-      <img src="../assets/home.svg" alt="Home" />
-      <span>Home</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/chores.svg" alt="Chores" />
-      <span>Chores</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/bills.svg" alt="Bills" />
-      <span>Bills</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/group.svg" alt="Group" />
-      <span>Group</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/profile.svg" alt="Profile" />
-      <span>Profile</span>
-    </a>
+    <a href="#" class="nav-item"><img src="../assets/home.svg" alt="Home" /><span>Home</span></a>
+    <a href="#" class="nav-item"><img src="../assets/chores.svg" alt="Chores" /><span>Chores</span></a>
+    <a href="#" class="nav-item"><img src="../assets/bills.svg" alt="Bills" /><span>Bills</span></a>
+    <a href="#" class="nav-item"><img src="../assets/group.svg" alt="Group" /><span>Group</span></a>
+    <a href="#" class="nav-item"><img src="../assets/profile.svg" alt="Profile" /><span>Profile</span></a>
   </nav>
-<script>
-  document.getElementById("sendFeedbackBtn").addEventListener("click", function () {
-    const userMessage = document.querySelector("textarea").value;
-    localStorage.setItem("originalMessage", userMessage);
-    window.location.href = "ai-feedback.html"; // change to your AI-assisted page file name
-  });
-</script>
 
+  <!-- Supabase JS -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
+    const supabaseUrl = 'https://ynweuhvuggonnbmdtvyi.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlud2V1aHZ1Z2dvbm5ibWR0dnlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzc3NDUsImV4cCI6MjA2NjU1Mzc0NX0.j4sXGBeioHZ0keLKaonS92hEiLKwXfbjg9IHP8gGMd0'; 
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const sendBtn = document.getElementById("sendFeedbackBtn");
+    const saveBtn = document.getElementById("saveDraftBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    sendBtn?.addEventListener("click", () => {
+      const message = document.getElementById("feedbackMessage").value.trim();
+      if (!message) {
+        alert("Please enter a message before continuing.");
+        return;
+      }
+      localStorage.setItem("userFeedback", message);
+      window.location.href = "ai-feedback.html";
+    });
+
+    saveBtn?.addEventListener("click", async () => {
+      const draft = document.getElementById("feedbackMessage").value.trim();
+      if (!draft) return alert("Write something to save.");
+      await supabase.from("drafts").insert([{ message: draft, user: "Alex", chore: "Dishes" }]);
+      alert("Draft saved!");
+    });
+
+    cancelBtn?.addEventListener("click", () => {
+      window.location.href = "../chores.html";
+    });
+
+    document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (document.referrer && document.referrer !== window.location.href) {
+        window.history.back();
+      } else {
+        window.location.href = "chore-details-feedback.html";
+      }
+    });
+  </script>
 </body>
 </html>

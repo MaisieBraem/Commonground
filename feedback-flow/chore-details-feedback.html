@@ -14,17 +14,21 @@
     <h1>Chore details</h1>
   </header>
 
-  <main class="chore-detail-screen">
+
+     <main class="chore-detail-screen">
     <section class="card chore-detail-card">
       <div class="chore-header">
         <img src="../assets/dishes.svg" alt="Chore Icon" class="chore-icon" />
-        <h2>Dishes</h2>
-        <p class="status-label">Completed</p>
+        <div>
+          <h2>Dishes</h2>
+          <p class="status-label">Completed</p>
+        </div>
       </div>
+</div>
 
       <div class="chore-meta">
         <div class="meta-item">
-          <img src="../assets/alex-avatar.svg" alt="Profile icon" />
+          <img src="../assets/alex-avatar.svg" alt="Avatar icon" />
           <p>Completed by <strong>Alex</strong></p>
         </div>
         <div class="meta-item">
@@ -32,14 +36,20 @@
           <p>June 16, 2025 at 2:30</p>
         </div>
       </div>
+      <section></section>
+      <button class="primary-btn" id="giveFeedbackBtn">
+        <img src="../assets/message.svg" alt="Message icon" />
+        Give Feedback
+      </button>
 
-      <button class="primary-btn" id="giveFeedbackBtn">Give Feedback</button>
       <button class="secondary-btn warning">
-        <img src="../assets/warning-icon.svg" alt="Warning" />
+        <img src="../assets/warning.svg" alt="Warning icon" />
         Mark as issue
       </button>
     </section>
   </main>
+
+
 
   <nav class="bottom-nav">
     <a href="#" class="nav-item">
@@ -63,10 +73,20 @@
       <span>Profile</span>
     </a>
   </nav>
-  
+
   <script>
-  document.getElementById("giveFeedbackBtn").addEventListener("click", () => {
-    window.location.href = "feedback-input.html"; // change this to your actual file name
+  // Navigate to the feedback input page
+  document.getElementById("giveFeedbackBtn")?.addEventListener("click", () => {
+    window.location.href = "feedback-input.html";
+  });
+
+  // Handle back button with fallback
+  document.querySelector(".back-btn")?.addEventListener("click", () => {
+    if (document.referrer && document.referrer !== window.location.href) {
+      window.history.back();
+    } else {
+      window.location.href = "../chores.html";
+    }
   });
 </script>
 </body>

@@ -72,5 +72,15 @@
 </nav>
 
      <script src="../script.js"></script> 
+
+     <script>
+        document.querySelector(".back-btn")?.addEventListener("click", () => {
+    if (document.referrer && document.referrer !== window.location.href) {
+      window.history.back();
+    } else {
+      window.location.href = "../chores.html";
+    }
+  });
+     </script>
 </body>
 </html>

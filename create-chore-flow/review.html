@@ -82,5 +82,15 @@
     document.getElementById("feedbackTone").textContent = data.tone || "Friendly";
   </script>
     <script src="../script.js"></script>
+
+    <script>
+       document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "schedule.html";
+      }
+    });
+    </script>
 </body>
 </html>

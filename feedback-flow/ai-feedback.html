@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="../feedback-style.css" />
 </head>
 <body>
-  <!-- Top Bar -->
   <header class="top-bar">
     <button class="back-btn">
       <img src="../assets/back.svg" alt="Back" />
@@ -15,86 +14,156 @@
     <h1>AI feedback assistance</h1>
   </header>
 
-  <!-- Main content -->
-  <main class="ai-feedback-screen">
-    <!-- Rewrite Summary -->
+  <main>
     <section class="card rewrite-summary">
-      <h3>✨ Here’s your reworded feedback</h3>
+      <h3><img src="../assets/ai.svg" alt="AI icon"> Here’s your reworded feedback</h3>
       <p>AI made it more constructive and positive</p>
     </section>
 
-    <!-- Original Message -->
-    <section class="card original-feedback">
-      <h4>👤 Your original message</h4>
+    <section class="card">
+      <h4><img src="../assets/profile.svg" alt="User icon"> Your original message</h4>
       <div class="feedback-box">
-        <p id="originalMessage">[User's original feedback will appear here]</p>
+        <p id="originalMessage">[Loading your message...]</p>
       </div>
     </section>
 
-    <!-- AI Rewrite -->
-    <section class="card rewritten-feedback">
-      <h4>🤖 AI rewritten version</h4>
+    <section class="card">
+      <h4>AI rewritten version</h4>
       <p class="description">We used AI to rewrite your message in a more constructive and helpful tone.</p>
       <div class="feedback-box ai-box">
-        <p id="aiMessage">[AI's improved feedback will appear here]</p>
+        <p id="rewrittenMessage">[Loading AI response...]</p>
       </div>
 
-      <!-- Tone Tags -->
-      <div class="tone-tags">
-        <span class="tag">💡 Constructive suggestions</span>
-        <span class="tag">😊 Friendly tone</span>
-        <span class="tag">✅ More encouraging</span>
-      </div>
+      <p class="tone-preference-label">Tone preference used for this rewrite</p>
+      <div class="tone-tags" id="toneTags"></div>
 
-      <!-- Actions -->
-      <button class="primary-btn" id="sendFeedbackBtn">Send feedback</button>
-      <div class="action-row">
-        <button class="secondary-btn">🔁 Try again</button>
-        <button class="secondary-btn">✏️ Edit original</button>
+      <button class="primary-btn" id="sendFeedbackBtn">
+        <img src="../assets/send.svg" alt="Send icon" />
+        Send feedback
+      </button>
+
+      <div class="button-row">
+        <button class="secondary-btn" id="tryAgainBtn">
+          <img src="../assets/try-again.svg" alt="Retry icon" />
+          Try again
+        </button>
+        <button class="secondary-btn" id="editOriginalBtn">
+          <img src="../assets/edit-icon.svg" alt="Edit icon" />
+          Edit original
+        </button>
       </div>
     </section>
   </main>
 
-  <!-- Bottom Nav -->
   <nav class="bottom-nav">
-    <a href="#" class="nav-item">
-      <img src="../assets/home.svg" alt="Home" />
-      <span>Home</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/chores.svg" alt="Chores" />
-      <span>Chores</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/bills.svg" alt="Bills" />
-      <span>Bills</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/group.svg" alt="Group" />
-      <span>Group</span>
-    </a>
-    <a href="#" class="nav-item">
-      <img src="../assets/profile.svg" alt="Profile" />
-      <span>Profile</span>
-    </a>
+    <a href="#" class="nav-item"><img src="../assets/home.svg" alt="Home" /><span>Home</span></a>
+    <a href="#" class="nav-item"><img src="../assets/chores.svg" alt="Chores" /><span>Chores</span></a>
+    <a href="#" class="nav-item"><img src="../assets/bills.svg" alt="Bills" /><span>Bills</span></a>
+    <a href="#" class="nav-item"><img src="../assets/group.svg" alt="Group" /><span>Group</span></a>
+    <a href="#" class="nav-item"><img src="../assets/profile.svg" alt="Profile" /><span>Profile</span></a>
   </nav>
 
-  <script>
-  document.getElementById("sendFeedbackBtn").addEventListener("click", function () {
-    const aiMessage = document.getElementById("aiMessage").textContent;
-    localStorage.setItem("finalFeedback", aiMessage);
-    window.location.href = "feedback-sent.html"; // make sure this file exists
-  });
+  <!-- AI + Supabase JS -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-  // Load previous data into page
-  window.addEventListener("DOMContentLoaded", () => {
-    const original = localStorage.getItem("originalMessage") || "[No original message]";
-    const rewritten = localStorage.getItem("aiFeedback") || "[No AI feedback available]";
-    
-    document.getElementById("originalMessage").textContent = original;
-    document.getElementById("aiMessage").textContent = rewritten;
-  });
-</script>
+    const supabaseUrl = 'https://ynweuhvuggonnbmdtvyi.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlud2V1aHZ1Z2dvbm5ibWR0dnlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA5Nzc3NDUsImV4cCI6MjA2NjU1Mzc0NX0.j4sXGBeioHZ0keLKaonS92hEiLKwXfbjg9IHP8gGMd0'; 
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
+    const API_key = 'Bearer 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'; 
+    const endpoint = 'https://openrouter.ai/api/v1/chat/completions';
+    const models = ['openai/gpt-4.1-nano-2025-04-14', 'mistralai/mistral-small-3.2-24b-instruct:free'];
+    const selectedTone = ['Constructive suggestions', 'Friendly tone', 'More encouraging'];
+
+    const originalMessage = localStorage.getItem("userFeedback") || "[No message]";
+    const originalTextEl = document.getElementById("originalMessage");
+    const rewrittenTextEl = document.getElementById("rewrittenMessage");
+    const toneTagsEl = document.getElementById("toneTags");
+
+    // Initial render
+    originalTextEl.textContent = originalMessage;
+    rewrittenTextEl.textContent = "Generating...";
+
+    selectedTone.forEach(tone => {
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = tone;
+      toneTagsEl.appendChild(tag);
+    });
+
+    async function fetchAIRewrite(note, toneList) {
+      const tone = toneList.join(", ");
+      const prompt = `Please rewrite the following feedback in a more ${tone.toLowerCase()} tone. Only return the rewritten sentence:\n\n${note}`;
+      for (const model of models) {
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Authorization": API_key,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              model,
+              messages: [{ role: "user", content: prompt }]
+            })
+          });
+
+          const data = await res.json();
+          if (data.error) continue;
+          const content = data.choices?.[0]?.message?.content;
+          return content || "No valid response from AI.";
+        } catch (err) {
+          console.error("AI error:", err);
+        }
+      }
+      return "AI could not generate a response.";
+    }
+
+    async function updateRewrite() {
+      if (!originalMessage || originalMessage === "[No message]") {
+        rewrittenTextEl.textContent = "Please go back and enter a message.";
+        return;
+      }
+
+      rewrittenTextEl.textContent = "Loading...";
+      const result = await fetchAIRewrite(originalMessage, selectedTone);
+      rewrittenTextEl.textContent = result;
+      localStorage.setItem("aiRewrittenFeedback", result);
+    }
+
+    document.getElementById("tryAgainBtn").addEventListener("click", updateRewrite);
+
+    document.getElementById("editOriginalBtn").addEventListener("click", () => {
+      window.location.href = "feedback-input.html";
+    });
+
+    document.getElementById("sendFeedbackBtn").addEventListener("click", async () => {
+      const rewrittenText = document.getElementById("rewrittenMessage")?.textContent;
+      localStorage.setItem("finalFeedback", rewrittenText || "No message available.");
+
+      // Optional: Save to Supabase
+      await supabase.from("feedback").insert([
+        {
+          original: originalMessage,
+          rewritten: rewrittenText,
+          user: "Alex",
+          chore: "Dishes"
+        }
+      ]);
+
+      window.location.href = "feedback-sent.html";
+    });
+
+    document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "feedback-input.html";
+      }
+    });
+
+    updateRewrite();
+  </script>
 </body>
 </html>

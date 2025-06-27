@@ -1,36 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assign Chore</title>
+  <link rel="stylesheet" href="../style.css" />
 </head>
-
-<nav class="bottom-nav">
-  <a href="#" class="nav-item">
-    <img src="../assets/home.svg" alt="Home" />
-    <span>Home</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/chores.svg" alt="Chores" />
-    <span>Chores</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/bills.svg" alt="Bills" />
-    <span>Bills</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/group.svg" alt="Group" />
-    <span>Group</span>
-  </a>
-  <a href="#" class="nav-item">
-    <img src="../assets/profile.svg" alt="Profile" />
-    <span>Profile</span>
-  </a>
-</nav>
-    <body>
-    <header class="top-bar">
+<body>
+  <header class="top-bar">
     <button class="back-btn">
       <img src="../assets/back.svg" alt="Back" />
     </button>
@@ -38,18 +15,18 @@
   </header>
 
   <main class="assign-section">
-    <!-- Top preview card (dynamic from previous screen) -->
+    <!-- Preview Card -->
     <div class="preview-card" id="chorePreview">
       <img id="choreIcon" src="" alt="Chore icon" />
       <div class="preview-text">
-        <p class="preview-title" id="choreTitle"></p>
-        <p class="preview-sub" id="choreNotes"></p>
+        <p class="preview-title" id="choreTitle">Chore title</p>
+        <p class="preview-sub" id="choreNotes">Chore notes</p>
       </div>
     </div>
 
-    <!-- Assignment list -->
+    <!-- Assign user -->
     <div class="input-block">
-      <label>Choose whose responsible for this chore</label>
+      <label><strong>Choose who’s responsible for this chore</strong></label>
       <div class="assignee-list">
         <div class="assignee">
           <img src="../assets/alex-avatar.svg" alt="Alex" />
@@ -88,7 +65,7 @@
 
     <!-- Rotation toggle -->
     <div class="input-block">
-      <label for="rotationSwitch">Enable rotation for this chore</label>
+      <label for="rotationSwitch"><strong>Enable rotation for this chore</strong></label>
       <p class="subtext">Automatically rotate this chore among flatmates</p>
       <label class="switch">
         <input type="checkbox" id="rotationSwitch" />
@@ -97,30 +74,57 @@
     </div>
   </main>
 
-        <!-- Sticky Continue Button -->
+  <!-- Sticky footer button -->
   <div class="sticky-footer">
-<button id="assignContinueBtn" class="continue-btn">Continue</button>
+    <button id="assignContinueBtn" class="continue-btn">Continue</button>
   </div>
-  
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item">
+      <img src="../assets/home.svg" alt="Home" />
+      <span>Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/chores.svg" alt="Chores" />
+      <span>Chores</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/bills.svg" alt="Bills" />
+      <span>Bills</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/group.svg" alt="Group" />
+      <span>Group</span>
+    </a>
+    <a href="#" class="nav-item">
+      <img src="../assets/profile.svg" alt="Profile" />
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Load chore data -->
   <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const data = JSON.parse(localStorage.getItem("currentChore"));
+    window.addEventListener("DOMContentLoaded", () => {
+      const data = JSON.parse(localStorage.getItem("currentChore"));
+      if (data) {
+        document.getElementById("choreTitle").textContent = data.name;
+        document.getElementById("choreNotes").textContent = data.note;
+        document.getElementById("choreIcon").src = data.icon;
+      }
+    });
 
-    if (data) {
-      document.getElementById("choreTitle").textContent = data.name;
-      document.getElementById("choreNotes").textContent = data.note;
-      document.getElementById("choreIcon").src = data.icon;
-    }
-  });
-</script>
+    document.getElementById("assignContinueBtn").addEventListener("click", () => {
+      window.location.href = "schedule.html";
+    });
 
-<script>
-  // Navigate to schedule page on continue click
-  document.getElementById("assignContinueBtn").addEventListener("click", () => {
-    window.location.href = "schedule.html"; // Update with your actual file path if needed
-  });
-</script>
-
-
+    document.querySelector(".back-btn")?.addEventListener("click", () => {
+      if (document.referrer && document.referrer !== window.location.href) {
+        window.history.back();
+      } else {
+        window.location.href = "chore-details.html";
+      }
+    });
+  </script>
 </body>
 </html>
